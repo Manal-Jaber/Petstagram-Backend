@@ -50,6 +50,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // return parent::render($request, $exception);
+        
+        if ( $exception instanceof \Illuminate\Database\QueryException ) {
+
+
+            return response()->json($exception);
+        }
         return parent::render($request, $exception);
     }
 }
