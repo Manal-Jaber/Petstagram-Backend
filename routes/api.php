@@ -18,7 +18,8 @@ Route::post('/register', 'AccountsController@register');
 Route::post('/login', 'AccountsController@login');
 Route::post('/logout', 'AccountsController@logout');
 
-
+Route::get('login/google', 'AccountsController@redirectToGoogleProvider');
+Route::get('login/google/callback', 'AccountsController@handleGoogleProviderCallback');
 
 
 Route::group(['middleware' => ['jwt.verify']], function() {
