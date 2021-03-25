@@ -37,6 +37,19 @@ class AccountsController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+    //for Socialite
+    public function redirectToGoogleProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleProviderCallback()
+    {
+        $user = Socialite::driver('google')->user();
+
+        // $user->token;
+    }
+
     protected function respondWithToken($token)
     {
         return response()->json([
