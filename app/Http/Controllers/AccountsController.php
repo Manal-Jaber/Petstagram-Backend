@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Profile;
 
 class AccountsController extends Controller
 {
@@ -12,6 +13,13 @@ class AccountsController extends Controller
         $user = Account::create([
              'email'    => $request->email,
              'password' => $request->password,
+         ]);
+        //  if(Profile::where('account_id',$user->id)->where('username', '=', $request->username)){
+        //     return response()->json(['error' => 'Double Entry'], 409);
+        //  };
+         $profile = Profile::create([
+             'username' => $request->username,
+             'account_id' => $user->id
          ]);
 
         $token = auth()->login($user);
